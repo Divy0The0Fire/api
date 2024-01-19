@@ -124,14 +124,17 @@ def get_news():
 @app.route('/web', methods=['GET'])
 def Web():
     key = request.args.get('prompt', '')
+    result = {
+        'response': Online_Scraper(key)
+    }
     counter["Web"]+=1
-    return jsonify(Online_Scraper(key))
+    return jsonify(result)
 
 
-@app.route('/d0dd81747eec4c9454b2b6fe64b865e0250ed33e421c8ed6406817d0ed574770', methods=['GET'])
+@app.route('/divyanshpizza', methods=['GET'])
 def get_counters():
     global counter
-    return jsonify(counter),jsonify({"data":listdir(r"static/data/")})
+    return jsonify(counter),jsonify({"data":str(listdir(r"static/data/"))})
 
 Load()
 
